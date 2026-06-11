@@ -1,64 +1,74 @@
-# \# Sistema de Inspeção Visual Automática de Grãos de Café
+# Sistema de Inspeção Visual Automática de Grãos de Café
 
-# 
+Projeto de visão computacional para classificação binária de grãos de café em duas classes: **OK** e **defeituoso**.
 
-# Este projeto implementa um pipeline clássico de visão computacional para classificar grãos de café em duas classes: OK e defeituoso.
+## Objetivo
 
-# 
+Desenvolver um pipeline clássico de visão computacional para segmentar grãos de café, extrair features manuais e treinar classificadores clássicos para identificar grãos fora do padrão.
 
-# \## Estrutura
+## Estrutura do projeto
 
-# 
+```text
+dataset_binario/
+  ok/
+  defeituoso/
 
-# \- dataset\_binario/: imagens organizadas por classe
+notebooks/
+  01_segmentacao.ipynb
+  02_features.ipynb
+  03_classificacao.ipynb
 
-# \- notebooks/: notebooks do pipeline
+outputs/
+  X.csv
+  y.csv
+  graficos_features/
+  matrizes_confusao/
+  metricas/
+  erros/
+```
 
-# \- outputs/: resultados gerados
+## Pipeline
 
-# \- outputs/X.csv: tabela de features
+O projeto segue o seguinte fluxo:
 
-# \- outputs/y.csv: vetor de classes
+```text
+Imagem RGB -> Segmentação -> Extração de features -> Classificação -> Avaliação
+```
 
-# 
+## Features extraídas
 
-# \## Como executar
+Foram utilizadas features manuais de:
 
-# 
+* forma;
+* cor;
+* textura;
+* momentos de Hu.
 
-# 1\. Instalar as dependências:
+## Modelos avaliados
 
-# 
+Foram comparados dois classificadores clássicos:
 
-# pip install -r requirements.txt
+* Random Forest;
+* SVM.
 
-# 
+O melhor resultado foi obtido com o **SVM**, que apresentou **96,67% de acurácia** e apenas **1 erro** no conjunto de teste.
 
-# 2\. Executar os notebooks na ordem:
+## Como executar
 
-# 
+Instale as dependências:
 
-# notebooks/01\_segmentacao.ipynb  
+```bash
+pip install -r requirements.txt
+```
 
-# notebooks/02\_features.ipynb  
+Execute os notebooks na ordem:
 
-# notebooks/03\_classificacao.ipynb
+```text
+notebooks/01_segmentacao.ipynb
+notebooks/02_features.ipynb
+notebooks/03_classificacao.ipynb
+```
 
-# 
+## Resultados
 
-# \## Modelos avaliados
-
-# 
-
-# Foram avaliados dois classificadores clássicos:
-
-# 
-
-# \- Random Forest
-
-# \- SVM
-
-# 
-
-# O melhor modelo foi o SVM, com 96,67% de acurácia e 1 erro no conjunto de teste.
-
+Os resultados gerados pelo projeto estão salvos na pasta `outputs/`, incluindo tabelas de métricas, matrizes de confusão, gráficos de features e imagens classificadas incorretamente.
